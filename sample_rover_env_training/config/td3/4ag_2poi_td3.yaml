@@ -1,0 +1,11 @@
+TD3:
+  num_episodes: 6000 # each episode is one rollout followed by one gradient step per environment step
+  warmup_episodes: 200 # episodes of uniformly random actions that fill the replay buffer before training
+  expl_noise: 0.2 # std of the Gaussian noise added to every action in the training rollouts
+  batch_size: 256
+  discount: 0.99
+  tau: 0.005
+  policy_noise: 0.2
+  noise_clip: 0.5
+  policy_freq: 2
+  print_freq: 100

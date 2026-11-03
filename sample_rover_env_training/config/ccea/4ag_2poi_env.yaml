@@ -1,0 +1,40 @@
+Meta:
+  num_objs: 1 # Change this to the number of objectives in the environment
+
+Environment:
+  dimensions: [20, 20]
+  ep_length: 25
+  timestep_penalty: 0
+  global_reward_mode: "Aggregated"
+  local_reward_mode: "exponential"
+  local_reward_kneecap: 10.0
+  local_reward_temp: 2
+  observation_mode: 'density'
+  poi_obs_temp: 2
+  agent_obs_temp: 2
+  include_location_in_obs: False
+
+  # Both POIs share the single objective. Coupling 2 means a POI rewards only
+  # while at least two rovers are inside its radius. Two pairs, one on each
+  # POI, score twice what four rovers piled on one POI can score.
+  pois:
+    - obj: 0
+      location: [10, 4]
+      radius: 2
+      coupling: 2
+      obs_window: [0, 100]
+      reward: 1
+      repeat: True
+    - obj: 0
+      location: [10, 16]
+      radius: 2
+      coupling: 2
+      obs_window: [0, 100]
+      reward: 1
+      repeat: True
+
+Agents:
+  starting_locs: [[10, 10], [10, 10], [10, 10], [10, 10]]
+  num_sensors: [4, 4, 4, 4]
+  observation_radii: [12, 12, 12, 12]
+  max_step_sizes: [1, 1, 1, 1]
